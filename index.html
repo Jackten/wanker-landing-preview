@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WANKER — Take Your Power Back</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --coral: #FF6B5B;
+            --coral-dark: #E85A4A;
+            --coral-light: #FF8A7A;
+            --cream: #FFF9F7;
+            --dark: #1A1A1A;
+            --gray: #666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--cream) 0%, #FFF 100%);
+        }
+
+        .hero-badge {
+            background: var(--coral);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 15vw, 10rem);
+            font-weight: 900;
+            color: var(--coral);
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-product {
+            max-width: 500px;
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 40px 80px rgba(255, 107, 91, 0.2);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--coral-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 107, 91, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--coral);
+            border: 2px solid var(--coral);
+        }
+
+        .btn-secondary:hover {
+            background: var(--coral);
+            color: white;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container-wide {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .intro-text {
+            font-size: 1.25rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .intro-text strong {
+            color: var(--dark);
+        }
+
+        .highlight {
+            color: var(--coral);
+            font-weight: 700;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 2rem;
+            background: var(--coral);
+            color: white;
+            text-align: center;
+        }
+
+        .quote {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        .quote-small {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Value Props */
+        .value-props {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .value-card p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Audience Section */
+        .audience-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .audience-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .audience-section .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .tag {
+            background: var(--coral-light);
+            color: var(--coral-dark);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Breakup Section */
+        .breakup-section {
+            padding: 6rem 2rem;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .breakup-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .breakup-section p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .breakup-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .breakup-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        /* Invest Section */
+        .invest-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .invest-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .invest-section .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .invest-section .terms {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 3rem;
+        }
+
+        .invest-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .invest-form input {
+            padding: 1.2rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .invest-form input:focus {
+            outline: 3px solid rgba(255,255,255,0.5);
+        }
+
+        .invest-form .btn {
+            background: white;
+            color: var(--coral);
+        }
+
+        .invest-form .btn:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .invest-note {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 1.5rem;
+        }
+
+        /* What We Have Section */
+        .progress-section {
+            padding: 6rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .progress-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-item {
+            text-align: center;
+        }
+
+        .progress-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-item h4 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .progress-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 6rem 2rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .vision-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .vision-section p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .future-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .future-product {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            color: var(--dark);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 6rem 2rem;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .newsletter-form input:focus {
+            outline: 3px solid var(--coral);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: #111;
+            color: white;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--coral);
+        }
+
+        .copyright {
+            opacity: 0.4;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-product {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-badge">Seed Round Open</span>
+        <h1>WANKER</h1>
+        <p class="hero-tagline">Take your power back — with hydration.</p>
+        <p class="hero-sub">Post-breakup emotional relief, disguised as a gag gift.</p>
+        
+        <img src="product.jpg" alt="WANKER - Premium Personal Lubricant" class="hero-product" onerror="this.style.display='none'">
+        
+        <div class="hero-cta">
+            <a href="#invest" class="btn btn-primary">I Want In</a>
+            <a href="#notify" class="btn btn-secondary">Notify Me at Launch</a>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro-section">
+        <div class="container">
+            <p class="intro-text">
+                <strong>WANKER</strong> is a high-quality water-based personal lubricant with a name that grabs attention, and a purpose that makes people laugh… <span class="highlight">and then nod quietly in agreement.</span>
+                <br><br>
+                This isn't just lube. It's a petty little bottle of closure — <strong>bold on the outside, healing on the inside.</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <div class="container">
+            <p class="quote">"Where most adult products sell pleasure, WANKER sells catharsis."</p>
+            <p class="quote-small">For anyone who's ever cried over an ex, gotten ghosted, or said "I should've known better."</p>
+        </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="value-props">
+        <div class="container-wide">
+            <div class="value-grid">
+                <div class="value-card">
+                    <span class="emoji">😂</span>
+                    <h3>Packaging That Makes You Laugh</h3>
+                    <p>Sharp branding and savage copywriting — all designed for social virality and boutique retail.</p>
+                </div>
+                <div class="value-card">
+                    <span class="emoji">✨</span>
+                    <h3>Product That Makes You Stay</h3>
+                    <p>Premium water-based formula. Long-lasting, body-safe, and actually good. No compromises.</p>
+                </div>
+                <div class="value-card">
+                    <span class="emoji">🎁</span>
+                    <h3>The Perfect Gag Gift</h3>
+                    <p>It solves a real emotional pain point with a cheeky, giftable product that starts conversations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audience Section -->
+    <section class="audience-section">
+        <div class="container">
+            <h2>Built For</h2>
+            <p class="subtitle">Emotionally intelligent consumers who want their products to speak their truth.</p>
+            <div class="audience-tags">
+                <span class="tag">Millennial & Gen Z Women</span>
+                <span class="tag">Queer Shoppers</span>
+                <span class="tag">Gift Givers with Taste</span>
+                <span class="tag">The Recently Single</span>
+                <span class="tag">Self-Care Queens</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breakup Section -->
+    <section class="breakup-section">
+        <div class="container">
+            <h2>The Perfect Breakup Gift 💔</h2>
+            <p>For yourself. For your friend who just dodged a bullet. For anyone ready to stop crying and start thriving.</p>
+            <div class="breakup-list">
+                <span class="breakup-item">✓ Just got ghosted</span>
+                <span class="breakup-item">✓ Finally blocked the ex</span>
+                <span class="breakup-item">✓ "I should've known better"</span>
+                <span class="breakup-item">✓ Choosing yourself</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress-section">
+        <div class="container">
+            <h2>What We've Built</h2>
+            <div class="progress-grid">
+                <div class="progress-item">
+                    <div class="progress-icon">✅</div>
+                    <h4>Brand & Packaging</h4>
+                    <p>Mockups complete</p>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-icon">✅</div>
+                    <h4>Visual System</h4>
+                    <p>Design language locked</p>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-icon">✅</div>
+                    <h4>Voice & Copy</h4>
+                    <p>Resonating with testers</p>
+                </div>
+                <div class="progress-item">
+                    <div class="progress-icon">🚧</div>
+                    <h4>Production</h4>
+                    <p>Supplier selected</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+        <div class="container">
+            <h2>The Bigger Vision</h2>
+            <p>WANKER isn't just a product — it's the start of an entire ecosystem of petty-but-functional self-care products.</p>
+            <div class="future-products">
+                <span class="future-product">💧 The Lube (launching)</span>
+                <span class="future-product">📦 Breakup Kits</span>
+                <span class="future-product">🧻 Revenge Wipes</span>
+                <span class="future-product">💭 Petty Affirmations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Invest Section -->
+    <section class="invest-section" id="invest">
+        <div class="container">
+            <h2>If ROI Turns You On 📈</h2>
+            <p class="subtitle">We're raising seed capital to fund production, launch DTC via Shopify, and build an emotionally honest (and hilarious) content strategy.</p>
+            <p class="terms"><strong>$1,000 minimum</strong> · 0.1% equity via SAFE · Early believers get early rewards</p>
+            
+            <form class="invest-form" action="#" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="text" name="amount" placeholder="Investment Interest (min $1,000)">
+                <button type="submit" class="btn">I'm Interested</button>
+            </form>
+            
+            <p class="invest-note">No commitment yet — we'll reach out with details.</p>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" id="notify">
+        <div class="container">
+            <h2>Not Ready to Invest? Just Watch. 👀</h2>
+            <p>Get notified when we launch. Early subscribers get early access.</p>
+            
+            <form class="newsletter-form" action="#" method="POST">
+                <input type="email" name="email" placeholder="your@email.com" required>
+                <button type="submit" class="btn btn-primary">Notify Me</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">WANKER</div>
+            <p class="footer-tagline">Self-care, literally.</p>
+            
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <p class="copyright">© 2026 WANKER LLC · Made with 🧴 in Wyoming · Go have fun, you magnificent wanker.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

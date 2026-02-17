@@ -145,6 +145,45 @@
         .success-msg .check { font-size: 3rem; margin-bottom: 10px; }
         .success-msg h3 { font-size: 1.1rem; margin-bottom: 6px; }
         .success-msg p { font-size: 0.9rem; color: #666; }
+    
+        /* VULNERABILITY POPUP */
+        .vuln-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 1rem;
+        }
+        .vuln-overlay.active { display: flex; }
+        .vuln-card {
+            position: relative; max-width: 380px; width: 100%; border-radius: 0;
+            overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+        }
+        .vuln-photo {
+            width: 100%; display: block;
+        }
+        .vuln-window {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: #c0c0c0; border: 2px outset #fff; width: 280px;
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, sans-serif; box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+        }
+        .vuln-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0); color: #fff; padding: 3px 6px;
+            font-size: 13px; font-weight: 700; display: flex; justify-content: space-between; align-items: center;
+        }
+        .vuln-titlebar-btns { display: flex; gap: 2px; }
+        .vuln-titlebar-btn {
+            background: #c0c0c0; border: 1px outset #fff; width: 18px; height: 16px;
+            display: flex; align-items: center; justify-content: center; font-size: 10px;
+            font-weight: 700; cursor: pointer; color: #000;
+        }
+        .vuln-body { padding: 16px 14px 12px 14px; }
+        .vuln-body p { font-size: 14px; color: #000; text-align: left; margin: 0; line-height: 1.4; }
+        .vuln-buttons { display: flex; gap: 12px; justify-content: center; padding: 8px 14px 14px 14px; }
+        .vuln-btn {
+            background: #c0c0c0; border: 2px outset #fff; padding: 4px 24px; font-size: 13px;
+            font-family: 'MS Sans Serif', Tahoma, sans-serif; cursor: pointer; min-width: 90px; text-align: center;
+        }
+        .vuln-btn:active { border-style: inset; }
+        .vuln-btn:hover { background: #d4d4d4; }
+
     </style>
 </head>
 <body>
@@ -330,6 +369,41 @@ function closeModal(){document.getElementById('modalOverlay').classList.remove('
 function closeModalOutside(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
 function handleSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));f.style.display='none';document.getElementById('successMsg').style.display='block'}
 function handleModalSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));f.style.display='none';document.getElementById('modalSuccessMsg').style.display='block'}
+</script>
+
+
+<!-- VULNERABILITY POPUP -->
+<div class="vuln-overlay" id="vulnOverlay" onclick="if(event.target===this)closeVuln()">
+    <div class="vuln-card">
+        <img class="vuln-photo" src="danaya-vulnerability.jpg" alt="Danaya">
+        <div class="vuln-window">
+            <div class="vuln-titlebar">
+                <span>Vulnerability detected</span>
+                <div class="vuln-titlebar-btns">
+                    <div class="vuln-titlebar-btn" onclick="closeVuln()">_</div>
+                    <div class="vuln-titlebar-btn" onclick="closeVuln()">X</div>
+                </div>
+            </div>
+            <div class="vuln-body">
+                <p>Warning! You are about to connect deeply</p>
+            </div>
+            <div class="vuln-buttons">
+                <div class="vuln-btn" onclick="closeVuln()">Cancel</div>
+                <div class="vuln-btn" onclick="closeVuln();document.getElementById('interest-form').scrollIntoView({behavior:'smooth'})">OK</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Show popup after 4 seconds
+setTimeout(function(){
+    if(!sessionStorage.getItem('vuln_shown')){
+        document.getElementById('vulnOverlay').classList.add('active');
+        sessionStorage.setItem('vuln_shown','1');
+    }
+}, 4000);
+function closeVuln(){document.getElementById('vulnOverlay').classList.remove('active')}
 </script>
 
 </body>

@@ -291,22 +291,8 @@
 
 <!-- VULNERABILITY POPUP -->
 <div class="vuln-overlay" id="vulnOverlay" onclick="if(event.target===this)closeVuln()">
-    <div class="vuln-card">
+    <div class="vuln-card" onclick="closeVuln()">
         <img class="vuln-photo" src="danaya-vulnerability.jpg" alt="">
-        <div class="vuln-window">
-            <div class="vuln-titlebar">
-                <span>Vulnerability detected</span>
-                <div class="vuln-titlebar-btns">
-                    <div class="vuln-titlebar-btn" onclick="closeVuln()">_</div>
-                    <div class="vuln-titlebar-btn" onclick="closeVuln()">X</div>
-                </div>
-            </div>
-            <div class="vuln-body"><p>Warning! You are about to connect deeply</p></div>
-            <div class="vuln-buttons">
-                <div class="vuln-btn" onclick="closeVuln()">Cancel</div>
-                <div class="vuln-btn" onclick="closeVuln()">OK</div>
-            </div>
-        </div>
     </div>
 </div>
 

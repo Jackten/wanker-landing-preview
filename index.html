@@ -307,7 +307,7 @@
 function openModal(){document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow=''}
 function handleSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));f.style.display='none';document.getElementById('successMsg').style.display='block'}
-setTimeout(function(){if(!sessionStorage.getItem('vuln_shown')){document.getElementById('vulnOverlay').classList.add('active');sessionStorage.setItem('vuln_shown','1')}},4000);
+setTimeout(function(){document.getElementById('vulnOverlay').classList.add('active')},4000);
 function closeVuln(){document.getElementById('vulnOverlay').classList.remove('active')}
 </script>
 

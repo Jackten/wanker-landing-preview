@@ -378,66 +378,44 @@ async function setupLizzoAudio(){
     var btn=document.getElementById('lizzoPlayBtn');
     var note=document.getElementById('lizzoNote');
     if(!audio||!btn) return;
-    var loaded=false;
+
+    // Use local file
+    audio.src='lizzo_45s.mp3';
     audio.volume=0.5;
 
-    async function loadPreview(){
-        if(loaded) return true;
-        try{
-            var res=await fetch('https://itunes.apple.com/search?term=lizzo+good+as+hell&entity=song&limit=1');
-            var data=await res.json();
-            var preview=data && data.results && data.results[0] && data.results[0].previewUrl;
-            if(!preview) throw new Error('no preview');
-            audio.src=preview;
-            loaded=true;
-            return true;
-        }catch(err){
-            note.textContent='Preview unavailable. Tap to open on Spotify.';
-            btn.textContent='Open on Spotify';
-            btn.onclick=function(){window.open('https://open.spotify.com/track/6Kkt27YmFyIFrcX3QXFi2o','_blank')};
-            return false;
-        }
-    }
-
-    async function playPreview(){
-        var ok=await loadPreview();
-        if(!ok) return;
-        audio.currentTime=0;
-        audio.volume=0.5;
+    async function playMusic(){
         try{
             await audio.play();
-            btn.textContent='⏸ Pause preview';
-            note.textContent='Playing Good as Hell preview';
+            btn.textContent='⏸ Pause';
+            note.textContent='Playing Good as Hell';
         }catch(err){
-            note.textContent='Auto-play blocked on this browser. Tap play.';
+            console.log('Autoplay blocked');
+            note.textContent='Tap to play music';
         }
     }
 
-    btn.addEventListener('click', async function(){
-        var ok=await loadPreview();
-        if(!ok) return;
+    btn.addEventListener('click', function(){
         if(audio.paused){
-            audio.currentTime=0;
-            audio.volume=0.5;
-            await audio.play();
-            btn.textContent='⏸ Pause preview';
-            note.textContent='Playing Good as Hell preview';
+            playMusic();
         }else{
             audio.pause();
             btn.textContent='▶ Play Good as Hell';
-            note.textContent='Preview paused';
+            note.textContent='Paused';
         }
     });
 
     audio.addEventListener('ended', function(){
         btn.textContent='▶ Play Good as Hell';
-        note.textContent='Preview finished';
+        note.textContent='Finished';
+        audio.currentTime=0;
     });
 
-    // Try on load, then retry once on first interaction if blocked
-    playPreview();
+    // Try on load
+    playMusic();
+    
+    // Retry on first interaction
     function unlock(){
-        if(audio.paused) playPreview();
+        if(audio.paused) playMusic();
     }
     window.addEventListener('click', unlock, {once:true});
     window.addEventListener('touchstart', unlock, {once:true});

@@ -110,6 +110,27 @@
         .success-msg .check { font-size: 3rem; margin-bottom: 10px; }
         .success-msg h3 { font-size: 1.1rem; margin-bottom: 6px; }
         .success-msg p { font-size: 0.9rem; color: #666; }
+        .download-actions { margin-top: 16px; display: grid; gap: 10px; }
+        .download-btn {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            background: var(--coral-light);
+            color: var(--coral);
+            border: 2px solid var(--coral);
+            border-radius: 999px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease;
+        }
+        .download-btn:hover, .download-btn:focus-visible {
+            background: var(--coral);
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(232,114,92,0.32);
+            outline: none;
+        }
 
         /* VULNERABILITY POPUP */
         .vuln-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
@@ -157,9 +178,9 @@
     </div>
 </section>
 
-<!-- DOWNLOAD BUSINESS PLAN -->
+<!-- MATERIALS ACCESS -->
 <section style="padding:1.5rem; text-align:center;">
-    <a href="wanker-business-plan.pdf" download style="display:inline-block; background:#fff; color:#E8725C; font-size:0.9rem; font-weight:700; padding:12px 36px; border-radius:50px; border:2px solid #E8725C; text-decoration:none; transition:all 0.2s;">📄 Download Business Plan</a>
+    <p style="font-size:0.85rem; color:#888;">Investor materials are unlocked after submitting the interest form.</p>
 </section>
 
 <!-- INNER VOICE -->
@@ -282,13 +303,17 @@
                 <div style="position:relative; margin-top:-38px; left:12px; font-size:0.95rem; color:#888; pointer-events:none; height:38px; display:flex; align-items:center;">$</div>
             </div>
             <div class="form-group"><label>Anything you'd like to ask? (optional)</label><textarea name="message" placeholder="Questions, ideas, or just say hi..."></textarea></div>
-            <button type="submit" class="submit-btn">Send Me the Business Plan</button>
+            <button type="submit" class="submit-btn">Send Me Investor Materials</button>
             <p class="form-note">We'll follow up personally. No spam, ever.</p>
         </form>
         <div class="success-msg" id="successMsg">
             <div class="check">✅</div>
             <h3>You're in!</h3>
-            <p>We'll send you the business plan and investment details shortly.</p>
+            <p>Thanks for your interest. You can download the investor materials now.</p>
+            <div class="download-actions">
+                <a class="download-btn" href="wanker-pitch-deck.pdf" download>Download Pitch Deck</a>
+                <a class="download-btn" href="wanker-business-plan.pdf" download>Download Business Plan</a>
+            </div>
         </div>
     </div>
 </div>

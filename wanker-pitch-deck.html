@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WANKER — Pitch Deck</title>
+<style>
+  /* Slide-sized PDF (16:9) */
+  @page { size: 13.333in 7.5in; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: Inter, -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif; color: #111; }
+
+  :root {
+    --coral: #E8725C;
+    --coral-light: #FFF5F3;
+    --dark: #111;
+    --muted: #666;
+  }
+
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    padding: 0.7in 0.8in;
+    box-sizing: border-box;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+  }
+  .slide.dark { background: #111; color: #fff; }
+  .slide.coral { background: var(--coral-light); }
+
+  .kicker {
+    font-size: 0.14in;
+    letter-spacing: 0.08in;
+    text-transform: uppercase;
+    color: var(--coral);
+    font-weight: 800;
+  }
+  .title {
+    margin: 0.12in 0 0;
+    font-size: 0.62in;
+    line-height: 1.04;
+    font-weight: 900;
+    letter-spacing: 0.02in;
+  }
+  .subtitle {
+    margin-top: 0.18in;
+    font-size: 0.22in;
+    color: var(--muted);
+    line-height: 1.35;
+    max-width: 9.5in;
+  }
+  .subtitle.white { color: rgba(255,255,255,0.78); }
+
+  .row { display: flex; gap: 0.35in; }
+  .col { flex: 1; }
+
+  .card {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 14px;
+    padding: 0.26in 0.28in;
+    background: #fff;
+  }
+  .dark .card { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+
+  .h2 {
+    font-size: 0.26in;
+    font-weight: 900;
+    margin: 0 0 0.12in;
+  }
+  .p {
+    font-size: 0.18in;
+    color: rgba(17,17,17,0.78);
+    line-height: 1.45;
+  }
+  .dark .p { color: rgba(255,255,255,0.78); }
+
+  .pill {
+    display: inline-block;
+    padding: 0.08in 0.14in;
+    border-radius: 999px;
+    border: 2px solid var(--coral);
+    color: var(--coral);
+    font-weight: 800;
+    letter-spacing: 0.02in;
+    font-size: 0.16in;
+    text-transform: uppercase;
+  }
+
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.18in; margin-top: 0.2in; }
+  .metric { border-radius: 14px; padding: 0.22in; background: #fff; border: 1px solid rgba(0,0,0,0.08); }
+  .metric .num { font-size: 0.34in; font-weight: 900; color: var(--coral); }
+  .metric .lbl { font-size: 0.14in; color: #777; margin-top: 0.05in; }
+
+  .table { width: 100%; border-collapse: collapse; margin-top: 0.14in; font-size: 0.17in; }
+  .table th { text-align: left; font-size: 0.15in; letter-spacing: 0.06in; text-transform: uppercase; color: #888; padding: 0.12in 0; }
+  .table td { padding: 0.10in 0; border-top: 1px solid rgba(0,0,0,0.08); }
+  .right { text-align: right; }
+  .small { font-size: 0.14in; color: #888; }
+  .dark .small { color: rgba(255,255,255,0.55); }
+
+  .footer {
+    position: absolute;
+    left: 0.8in;
+    right: 0.8in;
+    bottom: 0.35in;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.14in;
+    color: rgba(17,17,17,0.45);
+  }
+  .dark .footer { color: rgba(255,255,255,0.45); }
+
+  .brandmark {
+    position: absolute;
+    top: 0.55in;
+    right: 0.8in;
+    width: 0.55in;
+    height: 0.55in;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--coral), #ff9a85);
+  }
+</style>
+</head>
+<body>
+
+<!-- 1: COVER -->
+<section class="slide">
+  <div class="brandmark" aria-hidden="true"></div>
+  <div class="kicker">WANKER · lube</div>
+  <h1 class="title">When you need a finisher,<br>not a fighter.</h1>
+  <div class="subtitle">Gag gift · Petty shade · Self care</div>
+  <div style="margin-top:0.35in;">
+    <span class="pill">Pitch deck</span>
+  </div>
+  <div class="footer"><div>shopwanker.com</div><div>Confidential</div></div>
+</section>
+
+<!-- 2: THE PROBLEM -->
+<section class="slide coral">
+  <div class="kicker">THE PROBLEM</div>
+  <h1 class="title" style="font-size:0.56in;">Breakups suck.<br>Lube is lube.<br>Petty revenge isn’t monetized enough.</h1>
+  <div class="row" style="margin-top:0.35in;">
+    <div class="col card">
+      <div class="h2">Breakups suck.</div>
+      <div class="p">People want something that feels like relief, not advice.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Lube is lube.</div>
+      <div class="p">People already buy it. We’re changing what it <em>means</em>.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Petty revenge isn’t monetized.</div>
+      <div class="p">Etsy breakup baskets, revenge candles, “ex” dart boards — but no brand owns the category <strong>yet</strong>.</div>
+    </div>
+  </div>
+  <div class="footer"><div>WANKER</div><div>2</div></div>
+</section>
+
+<!-- 3: THE SOLUTION -->
+<section class="slide">
+  <div class="kicker">THE SOLUTION</div>
+  <h1 class="title" style="font-size:0.54in;">Parody with a purpose.</h1>
+  <div class="subtitle">In the heat of a breakup, people don’t want advice. They want a purchase that feels like revenge, self-care, and comedy in one.</div>
+
+  <div class="row" style="margin-top:0.35in;">
+    <div class="col card">
+      <div class="h2">Parody with a Purpose</div>
+      <div class="p">Leverages viral humor to capture attention while genuine quality earns repeat purchases.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Giftable & Shareable</div>
+      <div class="p">Same function as a “divorce cake” or breakup playlist — meme-friendly and built for gifting.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Humor, Quality, Satisfaction</div>
+      <div class="p">A laugh + real functionality + the petty satisfaction of a clever jab at an ex.</div>
+    </div>
+  </div>
+  <div class="footer"><div>WANKER</div><div>3</div></div>
+</section>
+
+<!-- 4: MARKET OPPORTUNITY -->
+<section class="slide dark">
+  <div class="kicker">MARKET OPPORTUNITY</div>
+  <h1 class="title" style="font-size:0.54in;">Proven behavior. No category owner.</h1>
+  <div class="metric-grid">
+    <div class="metric"><div class="num">$8.3B</div><div class="lbl">Global personal lubricant market (2025)</div></div>
+    <div class="metric"><div class="num">$14.6B</div><div class="lbl">Personalized gifting market (2030 est.)</div></div>
+    <div class="metric"><div class="num">38%</div><div class="lbl">Gen Z gravitate toward emotionally resonant gifts</div></div>
+  </div>
+  <div style="margin-top:0.28in;" class="subtitle white">
+    WANKER sits where gifting + comedy + self-care collide — and turns breakup energy into a product.
+  </div>
+  <div class="footer"><div>WANKER</div><div>4</div></div>
+</section>
+
+<!-- 5: TARGET AUDIENCE -->
+<section class="slide">
+  <div class="kicker">TARGET AUDIENCE</div>
+  <h1 class="title" style="font-size:0.54in;">The petty ex-partner ecosystem.</h1>
+
+  <div class="row" style="margin-top:0.28in;">
+    <div class="col card">
+      <div class="h2">The Millennial Survivor</div>
+      <div class="p">Ages 28–40 · Recently single · Values humor & authenticity · $45K–$85K income</div>
+    </div>
+    <div class="col card">
+      <div class="h2">The Gen Z Gifter</div>
+      <div class="p">Ages 18–27 · Social-savvy · Loves unique gifts · Embraces bold brands</div>
+    </div>
+    <div class="col card">
+      <div class="h2">The Supportive Friend</div>
+      <div class="p">Ages 25–45 · Thoughtful gift buyer · Wants to bring joy and validation</div>
+    </div>
+  </div>
+  <div class="footer"><div>WANKER</div><div>5</div></div>
+</section>
+
+<!-- 6: PRODUCT + PRICING -->
+<section class="slide coral">
+  <div class="kicker">PRODUCT & PRICING</div>
+  <h1 class="title" style="font-size:0.54in;">Same bottle. Two purchase moods.</h1>
+  <div class="row" style="margin-top:0.28in;">
+    <div class="col card">
+      <div class="h2">Base Bottle</div>
+      <table class="table">
+        <tr><th>Metric</th><th class="right">Value</th></tr>
+        <tr><td>Retail price</td><td class="right"><strong>$21.99</strong></td></tr>
+        <tr><td>COGS (assumed)</td><td class="right">$2.00</td></tr>
+        <tr><td>Gross margin</td><td class="right">~91%</td></tr>
+      </table>
+      <div class="small" style="margin-top:0.10in;">Water-based, body-safe formula · Giftable concept · Discreet shipping</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Gift Box / Petty Packaging</div>
+      <table class="table">
+        <tr><th>Metric</th><th class="right">Value</th></tr>
+        <tr><td>Retail price</td><td class="right"><strong>$29.00</strong></td></tr>
+        <tr><td>COGS (modeled)</td><td class="right">$4.00</td></tr>
+        <tr><td>Gross margin</td><td class="right">~86%</td></tr>
+      </table>
+      <div class="small" style="margin-top:0.10in;">Includes premium gift packaging (modeled +$2 incremental cost)</div>
+    </div>
+  </div>
+  <div class="footer"><div>WANKER</div><div>6</div></div>
+</section>
+
+<!-- 7: GO-TO-MARKET -->
+<section class="slide">
+  <div class="kicker">GO-TO-MARKET</div>
+  <h1 class="title" style="font-size:0.54in;">Viral launch → retail expansion → category leadership.</h1>
+
+  <div class="row" style="margin-top:0.30in;">
+    <div class="col card">
+      <div class="h2">1. Viral Launch</div>
+      <div class="p">Meme-driven content + influencer partnerships across TikTok, Instagram, X.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">2. Market Expansion</div>
+      <div class="p">Gift market penetration, boutique retailers, novelty stores, adult boutiques.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">3. Brand Evolution</div>
+      <div class="p">Product line extensions + international expansion + category leadership.</div>
+    </div>
+  </div>
+
+  <div class="footer"><div>WANKER</div><div>7</div></div>
+</section>
+
+<!-- 8: FINANCIALS -->
+<section class="slide dark">
+  <div class="kicker">FINANCIALS</div>
+  <h1 class="title" style="font-size:0.54in;">High margin. Low inventory risk. Built for gifting.</h1>
+
+  <div class="row" style="margin-top:0.26in;">
+    <div class="col card">
+      <div class="h2">Revenue Projections</div>
+      <table class="table">
+        <tr><th>Year</th><th class="right">Revenue</th></tr>
+        <tr><td>Year 1</td><td class="right"><strong>$138.6K</strong></td></tr>
+        <tr><td>Year 2</td><td class="right">$850K</td></tr>
+        <tr><td>Year 3</td><td class="right">$2.1M</td></tr>
+      </table>
+      <div class="small">(Year 1 aligns to the business plan’s conservative projection.)</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Key Metrics</div>
+      <table class="table">
+        <tr><th>Metric</th><th class="right">Value</th></tr>
+        <tr><td>Units Year 1</td><td class="right">15K</td></tr>
+        <tr><td>Repeat purchase rate</td><td class="right">42%</td></tr>
+        <tr><td>Customer LTV</td><td class="right">$35</td></tr>
+        <tr><td>CAC (viral)</td><td class="right">$2.25</td></tr>
+        <tr><td>CAC (digital)</td><td class="right">$8.50</td></tr>
+      </table>
+    </div>
+    <div class="col card">
+      <div class="h2">Funding Ask</div>
+      <div style="font-size:0.52in; font-weight:900; color: var(--coral); margin-top:0.06in;">$100,000</div>
+      <div class="p">Seed round to fund first production run, marketing ops, and runway to break-even.</div>
+      <table class="table">
+        <tr><th>Use of Funds</th><th class="right">%</th></tr>
+        <tr><td>Marketing</td><td class="right">40%</td></tr>
+        <tr><td>Inventory</td><td class="right">30%</td></tr>
+        <tr><td>Operations</td><td class="right">20%</td></tr>
+        <tr><td>R&amp;D</td><td class="right">10%</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer"><div>WANKER</div><div>8</div></div>
+</section>
+
+<!-- 9: THE ASK & VISION -->
+<section class="slide">
+  <div class="kicker">THE ASK & VISION</div>
+  <h1 class="title" style="font-size:0.54in;">Join me if ROI and revenge turn you on.</h1>
+
+  <div class="row" style="margin-top:0.28in;">
+    <div class="col card">
+      <div class="h2">18 months runway</div>
+      <div class="p">Fund production + marketing while creator momentum converts.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">5× ROI target</div>
+      <div class="p">High-margin product with a built-in gifting loop.</div>
+    </div>
+    <div class="col card">
+      <div class="h2">Category leader</div>
+      <div class="p">Own breakup revenge as a product category — first mover advantage.</div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:0.22in;">
+    <div class="col card">
+      <div class="h2">5-year milestones</div>
+      <div class="p"><strong>Year 2:</strong> $1M ARR · DTC dominance<br><strong>Year 3:</strong> Retail expansion · national partnerships<br><strong>Year 5:</strong> Category-defining brand with new SKUs</div>
+    </div>
+  </div>
+
+  <div class="footer"><div>WANKER</div><div>9</div></div>
+</section>
+
+</body>
+</html>

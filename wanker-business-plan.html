@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @page { size: A4; margin: 25px 40px; }
+  html, body { margin: 0; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; padding: 0; line-height: 1.5; box-sizing: border-box; }
+  .page { padding: 25px 40px; }
+  .page-break { page-break-before: always; }
+  .section { margin-bottom: 16px; }
+  .section-title { font-size: 12px; font-weight: 700; color: #E8725C; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+  h2 { font-size: 18px; color: #1a1a1a; margin: 0 0 10px 0; }
+  h3 { font-size: 13px; color: #E8725C; margin: 12px 0 4px 0; font-weight: 700; }
+  p { font-size: 11px; margin: 4px 0; color: #333; }
+  .lead { font-size: 12px; color: #555; line-height: 1.6; }
+  .highlight { color: #E8725C; font-weight: 600; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .stat-box { background: #FFF5F3; border-radius: 8px; padding: 12px 8px; text-align: center; }
+  .stat-box .num { font-size: 20px; font-weight: 700; color: #E8725C; }
+  .stat-box .lbl { font-size: 9px; color: #666; margin-top: 2px; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+  th { background: #FFF5F3; color: #E8725C; text-align: left; padding: 5px 8px; font-weight: 700; font-size: 10px; }
+  td { padding: 4px 8px; border-bottom: 1px solid #f0f0f0; font-size: 10px; }
+  td.right, th.right { text-align: right; }
+  .total-row td { font-weight: 700; border-top: 2px solid #E8725C; background: #FFF5F3; }
+  ul { padding-left: 16px; margin: 4px 0; }
+  li { font-size: 11px; margin: 2px 0; }
+  .quote-box { background: #FFF5F3; border-left: 3px solid #E8725C; padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 11px; color: #555; font-style: italic; }
+  .quote-box .sig { font-style: normal; font-weight: 600; color: #E8725C; margin-top: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 14px; }
+  .card-title { font-size: 11px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .footer-bar { padding: 8px 40px; border-top: 3px solid #E8725C; text-align: center; font-size: 9px; color: #aaa; margin-top: 16px; }
+  .footer-bar .footer-logo { width: 16px; height: auto; vertical-align: middle; margin-right: 4px; }
+  .cover { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; }
+  .cover .logo { width: 80px; margin-bottom: 16px; }
+  .cover h1 { font-size: 42px; letter-spacing: 8px; margin: 0; }
+  .cover .subtitle { font-size: 14px; color: #E8725C; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+  .cover .tagline { font-size: 14px; color: #888; margin-top: 16px; font-style: italic; }
+  .cover .doc-title { font-size: 18px; color: #E8725C; font-weight: 700; margin-top: 30px; letter-spacing: 2px; text-transform: uppercase; }
+  .cover .date { font-size: 12px; color: #aaa; margin-top: 12px; }
+  .cover .conf { background: #FFF5F3; color: #E8725C; font-size: 10px; padding: 5px 14px; border-radius: 4px; margin-top: 24px; font-weight: 600; letter-spacing: 1px; }
+
+  /* Lizzo section - clean white aesthetic */
+  .lyric-box { background: #FFF5F3; border-radius: 10px; padding: 18px 22px; margin: 10px 0; border-left: 3px solid #E8725C; }
+  .lyric-box .bar-label { font-size: 9px; color: #E8725C; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-weight: 700; }
+  .lyric-box .lyric { font-size: 12px; color: #999; margin: 3px 0; font-style: italic; }
+  .lyric-box .lyric .lit { color: #E8725C; font-weight: 700; font-style: normal; }
+  .lyric-box .song-credit { font-size: 9px; color: #aaa; margin-top: 10px; }
+
+  /* Revenge callout - coral on white */
+  .callout-box { background: #FFF5F3; border: 2px solid #E8725C; border-radius: 10px; padding: 14px 18px; margin: 12px 0; text-align: center; }
+  .callout-box .big { font-size: 15px; font-weight: 800; color: #E8725C; letter-spacing: 1px; }
+  .callout-box .sub { font-size: 11px; color: #555; margin-top: 6px; }
+
+  .funnel-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 16px; margin: 8px 0; }
+  .funnel-step { display: flex; align-items: center; margin: 4px 0; }
+  .funnel-arrow { color: #E8725C; font-weight: 700; margin: 0 8px; font-size: 14px; }
+  .funnel-label { font-size: 11px; }
+
+  .thesis-point { display: flex; align-items: flex-start; margin: 8px 0; }
+  .thesis-icon { font-size: 18px; margin-right: 10px; flex-shrink: 0; }
+  .thesis-text { font-size: 11px; color: #333; }
+  .thesis-text strong { color: #1a1a1a; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <img class="logo" src="file:///root/clawd/output/wanker-logo.jpg" alt="WANKER">
+  <h1>WANKER</h1>
+  <div class="subtitle">Personal Lubricant</div>
+  <div class="tagline">If ROI and petty revenge turn you on, this is for your eyes.</div>
+  <div class="doc-title">Business Plan</div>
+  <div class="date">February 2026</div>
+  <div class="conf">CONFIDENTIAL</div>
+</div>
+
+<!-- PAGE 2: INVESTMENT THESIS -->
+<div class="page page-break">
+  <div class="section">
+    <div class="section-title">The Investment Thesis</div>
+    <h2>A 90% margin product at the intersection of two underserved markets.</h2>
+    <p class="lead">
+      Post-breakup emotional relief is a multi-billion dollar behavior with no brand owner.<br>
+      WANKER is a personal lubricant that sells catharsis, not pleasure. It's a trophy for moving on.
+    </p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box"><div class="num">91%</div><div class="lbl">Gross Margin ($2 COGS, $21.99 Price)</div></div>
+    <div class="stat-box"><div class="num">$8.3B</div><div class="lbl">Global Lubricant Market (2025)</div></div>
+    <div class="stat-box"><div class="num">500K+</div><div class="lbl">Organic Viral Views</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Why Now</div>
+    <div class="thesis-point">
+      <div class="thesis-icon">🎯</div>
+      <div class="thesis-text"><strong>Petty revenge is not monetized.</strong> 60+ breakup gift baskets on Etsy, revenge candles, "ex" dart boards on Amazon. Nobody owns the category. Nobody has built a brand. WANKER is that brand.</div>
+    </div>
+    <div class="thesis-point">
+      <div class="thesis-icon">🎵</div>
+      <div class="thesis-text"><strong>Breakup culture is a proven commercial engine.</strong> Lizzo's "Good as Hell" went 5x Platinum and hit 1B+ streams by turning post-breakup energy into an anthem. WANKER channels that same emotional engine into a physical product.</div>
+    </div>
+    <div class="thesis-point">
+      <div class="thesis-icon">🥓</div>
+      <div class="thesis-text"><strong>Novelty lube already works.</strong> J&D's Bacon Lube became "the bestselling novelty item we've ever made" (HuffPost). If people buy lube that tastes like breakfast, they will absolutely buy lube that validates their heartbreak.</div>
+    </div>
+    <div class="thesis-point">
+      <div class="thesis-icon">📱</div>
+      <div class="thesis-text"><strong>Creator-entrepreneur advantage.</strong> Danaya's personal brand already has viral momentum. A recent Instagram video was reposted to X and hit 500,000+ views. The audience is warm, humor-aligned, and ready to convert.</div>
+    </div>
+  </div>
+
+  <div class="lyric-box">
+    <div class="bar-label">Cultural Proof: Good as Hell, Lizzo</div>
+    <div class="lyric" style="color:#bbb;">Come now, come dry your eyes</div>
+    <div class="lyric"><span class="lit">You know you're a star,</span> you can touch the sky</div>
+    <div class="lyric" style="color:#bbb;">I know that it's hard, but you have to try</div>
+    <div class="lyric"><span class="lit">If he don't love you anymore</span></div>
+    <div class="lyric"><span class="lit">Just walk your fine ass out the door</span></div>
+    <div class="lyric" style="color:#bbb;">I do my hair toss, check my nails</div>
+    <div class="lyric">Baby, how're you feeling? <span class="lit">(Feeling good as hell)</span></div>
+    <div class="song-credit">5x Platinum &bull; #1 Billboard Hot 100 &bull; 1B+ streams &bull; Same emotional engine, different format</div>
+  </div>
+
+  <div class="callout-box">
+    <div class="big">WANKER slots into revenge baskets, breakup kits, and gag gift bundles.</div>
+    <div class="sub">Amazon, Etsy, Spencer's, boutique retailers. Zero friction. Instant category fit. Built for gifting.</div>
+  </div>
+</div>
+
+<!-- PAGE 3: PRODUCT & UNIT ECONOMICS -->
+<div class="page page-break">
+  <div class="section">
+    <div class="section-title">Product & Unit Economics</div>
+    <div class="two-col">
+      <div>
+        <h3>Launch SKU</h3>
+        <ul>
+          <li>100ml PETG pump bottle</li>
+          <li>Custom coral/papaya orange</li>
+          <li>Silver aluminum pump (24/410)</li>
+          <li>Water-based formula via US manufacturer's existing FDA 510(k) clearance</li>
+        </ul>
+        <h3>Product Lines</h3>
+        <ul>
+          <li><span class="highlight">Main Line:</span> Coral/papaya orange</li>
+          <li><span class="highlight">Ex Was a Fighter?:</span> Matte black series</li>
+          <li><span class="highlight">Future:</span> Breakup Kits, Revenge Wipes, Petty Affirmations</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Unit Economics</h3>
+        <table>
+          <tr><th>Item</th><th class="right">Cost</th></tr>
+          <tr><td>PETG bottle + pump</td><td class="right">$0.80</td></tr>
+          <tr><td>Formula (filled, sealed)</td><td class="right">$0.60</td></tr>
+          <tr><td>Label + packaging</td><td class="right">$0.40</td></tr>
+          <tr><td>Shipping to US</td><td class="right">$0.20</td></tr>
+          <tr class="total-row"><td><strong>COGS per unit</strong></td><td class="right"><strong>$2.00</strong></td></tr>
+        </table>
+        <table>
+          <tr><th>Metric</th><th class="right">Value</th></tr>
+          <tr><td>Price per unit</td><td class="right">$21.99</td></tr>
+          <tr><td>Gross profit per unit</td><td class="right">$19.99</td></tr>
+          <tr><td>Gross margin</td><td class="right"><strong>91%</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Attention Funnel</div>
+    <p class="lead">Content is the growth engine. Every piece of content feeds a fully automated conversion pipeline.</p>
+    <div class="funnel-box">
+      <div class="funnel-step"><span class="highlight">1.</span><span class="funnel-arrow">→</span><span class="funnel-label"><strong>Content goes viral</strong> (TikTok, Instagram, X) &mdash; organic reach, relatable humor</span></div>
+      <div class="funnel-step"><span class="highlight">2.</span><span class="funnel-arrow">→</span><span class="funnel-label"><strong>Viewers land on site</strong> &mdash; product page, brand story, social proof</span></div>
+      <div class="funnel-step"><span class="highlight">3.</span><span class="funnel-arrow">→</span><span class="funnel-label"><strong>Email capture</strong> &mdash; Klaviyo sequences nurture and convert</span></div>
+      <div class="funnel-step"><span class="highlight">4.</span><span class="funnel-arrow">→</span><span class="funnel-label"><strong>Purchase + gifting loop</strong> &mdash; buyers share, tag, gift. Organic virality multiplies.</span></div>
+    </div>
+    <p style="font-size:10px; color:#888; margin-top:6px;">Danaya's full-time content creation is the primary growth engine. The funnel runs while you sleep.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Competitive Advantages</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">91% Gross Margins</div>
+        <p>$2 COGS on a $21.99 product. Better than most DTC brands. Every unit sold is nearly pure profit.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Built-In Audience</div>
+        <p>500K+ viral views. Low customer acquisition cost from day one. The brand is already resonating.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Automated Revenue</div>
+        <p>Content drives attention. Email automation converts. Revenue runs 24/7 without manual intervention.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Category Creator</div>
+        <p>No one owns "breakup revenge" as a product category. First mover in a space with proven demand and zero competition.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: FINANCIALS -->
+<div class="page page-break">
+  <div class="section">
+    <div class="section-title">Use of Funds</div>
+    <h3>Startup Costs (One-Time)</h3>
+    <table>
+      <tr><th>Item</th><th>Description</th><th class="right">Cost</th></tr>
+      <tr><td>LLC Formation</td><td>Stripe Atlas (Delaware LLC, EIN, bank)</td><td class="right">$500</td></tr>
+      <tr><td>Brand Design</td><td>Logo, packaging, label design</td><td class="right">$1,200</td></tr>
+      <tr><td>Trademark</td><td>US trademark filing, Class 3</td><td class="right">$350</td></tr>
+      <tr><td>Domain + Hosting</td><td>getwanker.com + Shopify</td><td class="right">$350</td></tr>
+      <tr><td>Product Samples</td><td>Supplier samples and testing</td><td class="right">$200</td></tr>
+      <tr><td>First Production Run</td><td>1,000 units MOQ, filling, labeling</td><td class="right">$4,000</td></tr>
+      <tr><td>Packaging</td><td>Custom retail boxes</td><td class="right">$1,500</td></tr>
+      <tr><td>Shipping to US</td><td>Sea freight to warehouse</td><td class="right">$1,500</td></tr>
+      <tr><td>Warehousing</td><td>3PL setup + 3 months storage</td><td class="right">$1,200</td></tr>
+      <tr><td>Content Production</td><td>Product photos, lifestyle shoots</td><td class="right">$800</td></tr>
+      <tr><td>Email Automation</td><td>Klaviyo setup, sequences, templates</td><td class="right">$400</td></tr>
+      <tr><td>Legal</td><td>Attorney review of agreements</td><td class="right">$500</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>Total Startup</strong></td><td class="right"><strong>$12,500</strong></td></tr>
+    </table>
+
+    <h3>Monthly Operating Costs</h3>
+    <table>
+      <tr><th>Item</th><th>Description</th><th class="right">Monthly</th></tr>
+      <tr><td><strong>Founder Salary</strong></td><td><strong>Danaya: full-time content creation, brand building, community</strong></td><td class="right"><strong>$3,000</strong></td></tr>
+      <tr><td>Marketing Team</td><td>Social media management, content, ads strategy</td><td class="right">$4,000-6,000</td></tr>
+      <tr><td>Micro-Influencers</td><td>Product seeding + paid collabs (10-20/mo)</td><td class="right">$1,500-3,000</td></tr>
+      <tr><td>Paid Ads</td><td>Instagram, TikTok, Facebook (scaled with revenue)</td><td class="right">$1,000-3,000</td></tr>
+      <tr><td>Email Marketing</td><td>Klaviyo, automated sequences, newsletters</td><td class="right">$100-300</td></tr>
+      <tr><td>Shopify + Apps</td><td>Platform, reviews, upsells</td><td class="right">$200</td></tr>
+      <tr><td>3PL / Fulfillment</td><td>Pick, pack, ship per order</td><td class="right">$500-1,500</td></tr>
+      <tr><td>Accounting</td><td>Monthly bookkeeping</td><td class="right">$200</td></tr>
+      <tr><td>Insurance</td><td>Product liability</td><td class="right">$150</td></tr>
+      <tr><td>Registered Agent</td><td>LLCWyo virtual address</td><td class="right">$6</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>Total Monthly Burn</strong></td><td class="right"><strong>$10,650-17,350</strong></td></tr>
+    </table>
+    <p style="font-size:9px; color:#999;">Founder salary ensures Danaya can dedicate full-time energy to content creation, the primary growth engine of the business.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Runway Analysis</div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num">$100K</div><div class="lbl">Target Raise</div></div>
+      <div class="stat-box"><div class="num">$12.5K</div><div class="lbl">Startup Costs</div></div>
+      <div class="stat-box"><div class="num">$87.5K</div><div class="lbl">Available for Operations</div></div>
+    </div>
+    <table>
+      <tr><th>Scenario</th><th>Monthly Burn</th><th class="right">Runway</th></tr>
+      <tr><td>Conservative (lean ops)</td><td>$10,650/mo</td><td class="right">8+ months</td></tr>
+      <tr><td>Standard</td><td>$14,000/mo</td><td class="right">6 months</td></tr>
+      <tr><td>Aggressive growth</td><td>$17,350/mo</td><td class="right">5 months</td></tr>
+    </table>
+    <p style="font-size:10px;">Revenue from Kickstarter (Q2) and DTC sales (Q3) extend runway significantly. At conservative projections, the business reaches break-even by month 6-8.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">12-Month Revenue Projections (Conservative)</div>
+    <table>
+      <tr><th>Quarter</th><th>Channel</th><th>Units</th><th class="right">Revenue</th><th class="right">COGS</th><th class="right">Gross Profit</th></tr>
+      <tr><td>Q2 2026</td><td>Kickstarter</td><td>500</td><td class="right">$11,000</td><td class="right">$1,000</td><td class="right">$10,000</td></tr>
+      <tr><td>Q3 2026</td><td>DTC Launch</td><td>800</td><td class="right">$17,600</td><td class="right">$1,600</td><td class="right">$16,000</td></tr>
+      <tr><td>Q4 2026</td><td>Holiday + Gifting</td><td>2,000</td><td class="right">$44,000</td><td class="right">$4,000</td><td class="right">$40,000</td></tr>
+      <tr><td>Q1 2027</td><td>Marketplace + Amazon</td><td>3,000</td><td class="right">$66,000</td><td class="right">$6,000</td><td class="right">$60,000</td></tr>
+      <tr class="total-row"><td colspan="2"><strong>Year 1</strong></td><td><strong>6,300</strong></td><td class="right"><strong>$138,600</strong></td><td class="right"><strong>$12,600</strong></td><td class="right"><strong>$126,000</strong></td></tr>
+    </table>
+    <p style="font-size:9px; color:#999;">Q4 includes holiday gifting surge and revenge basket placements. Q1 2027 reflects Amazon/Etsy marketplace expansion at ~$22/unit.</p>
+  </div>
+</div>
+
+<!-- PAGE 5: INVESTMENT + GO-TO-MARKET -->
+<div class="page page-break">
+  <div class="section">
+    <div class="section-title">The Ask</div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num">$100K</div><div class="lbl">Target Raise</div></div>
+      <div class="stat-box"><div class="num">SAFE</div><div class="lbl">Investment Instrument</div></div>
+      <div class="stat-box"><div class="num">8+ mo</div><div class="lbl">Runway (Conservative)</div></div>
+    </div>
+    <p>Raising $100,000 via SAFE to fund startup costs, first production run, founder salary, and 6-8 months of marketing operations to reach break-even.</p>
+
+    <h3>Investment Terms</h3>
+    <table>
+      <tr><th>Term</th><th>Value</th></tr>
+      <tr><td>Instrument</td><td>Post-Money SAFE (YC standard)</td></tr>
+      <tr><td>Valuation Cap</td><td>$500,000</td></tr>
+      <tr><td>Discount Rate</td><td>20%</td></tr>
+      <tr><td>Minimum Investment</td><td>$1,000</td></tr>
+      <tr><td>Pro-Rata Rights</td><td>Yes</td></tr>
+    </table>
+
+    <h3>What Your Investment Gets</h3>
+    <table>
+      <tr><th>Amount</th><th>Equity at $500K Cap</th><th>If Company Hits $5M</th></tr>
+      <tr><td>$1,000</td><td>0.2%</td><td>$10,000 (10x)</td></tr>
+      <tr><td>$5,000</td><td>1.0%</td><td>$50,000 (10x)</td></tr>
+      <tr><td>$10,000</td><td>2.0%</td><td>$100,000 (10x)</td></tr>
+      <tr><td>$25,000</td><td>5.0%</td><td>$250,000 (10x)</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Go-to-Market Phases</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Phase 1: Kickstarter (Q2 2026)</div>
+        <p>Pre-orders to validate demand. Target: $10K-25K. Zero equity dilution. Proves product-market fit before spending on ads.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 2: Shopify DTC (Q3 2026)</div>
+        <p>Direct-to-consumer at $21.99. Content funnel + email automation + micro-influencer seeding. Full margin capture.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 3: Marketplace (Q4 2026)</div>
+        <p>Amazon, Etsy revenge baskets, boutique retailers, Spencer's. Holiday gifting drives Q4 surge.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Phase 4: Expand (2027)</div>
+        <p>New SKUs (Breakup Kits, Revenge Wipes, Petty Affirmations), international markets, retail chains.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Team</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Danaya Yerzhanova, Founder and CEO</div>
+        <p>Building WANKER on the idea that the feeling of taking your power back is worth a lot to people. Full-time content creation fuels the attention funnel. Viral creator with 500K+ organic reach.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Jack Alderson, Investor/Advisor</div>
+        <p>Startup operations, financial strategy, technical infrastructure. 10% equity. Hands-on operational support from company formation through launch.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-box">
+    Not a sex product. Comic relief in a cheeky form, just shocking enough to interrupt doom scrolling.
+    The feeling of taking your power back is worth a lot to people. That's what we're selling.
+    <div class="sig">Danaya Yerzhanova, Founder</div>
+  </div>
+
+  <div class="footer-bar">
+    <img class="footer-logo" src="file:///root/clawd/output/wanker-logo.jpg" alt="" style="width:16px; vertical-align:middle; margin-right:4px;">WANKER LLC &bull; 75 E 3rd St, Suite A104, Sheridan, WY 82801 &bull; hello.danaya.papaya@gmail.com
+  </div>
+</div>
+
+</body>
+</html>

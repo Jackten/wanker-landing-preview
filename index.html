@@ -106,6 +106,28 @@
         .submit-btn:hover, .submit-btn:focus-visible { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(232,114,92,0.46), 0 0 0 4px rgba(232,114,92,0.22); outline: none; }
         .submit-btn:active { transform: translateY(0); box-shadow: 0 5px 16px rgba(232,114,92,0.34); }
         .form-note { font-size: 0.75rem; color: #aaa; text-align: center; margin-top: 12px; }
+        .danaya-note {
+            background: var(--coral-light);
+            border: 1px solid rgba(232,114,92,0.35);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+        .danaya-note-title {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--coral);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .danaya-note p {
+            font-size: 0.85rem;
+            line-height: 1.55;
+            color: #444;
+            margin: 0;
+        }
         .success-msg { display: none; text-align: center; padding: 20px; }
         .success-msg .check { font-size: 3rem; margin-bottom: 10px; }
         .success-msg h3 { font-size: 1.1rem; margin-bottom: 6px; }
@@ -302,6 +324,14 @@
         <button class="modal-close" onclick="closeModal()">×</button>
         <h2>Express Investor Interest</h2>
         <p class="form-sub">Get the business plan and investment details.</p>
+        <div class="danaya-note">
+            <div class="danaya-note-title">Message from Danaya</div>
+            <p>
+                Signal confidence to close what’s needed. But I’m being intentional. I don’t want a crowd of small voices. I’d rather keep it tight and strategic.<br><br>
+                So I’m collecting expressions of interest first to see who wants in and at what level, then structuring it properly. No pressure to commit.<br><br>
+                There’s a tech-focused angel overseeing the project for further confidence.
+            </p>
+        </div>
         <form id="modalForm" onsubmit="handleSubmit(event)">
             <div class="form-group"><label>Your Name</label><input type="text" name="name" required placeholder="Full name"></div>
             <div class="form-group"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"></div>

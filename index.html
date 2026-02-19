@@ -394,12 +394,14 @@ async function setupLizzoAudio(){
     var note=document.getElementById('lizzoNote');
     if(!audio||!btn) return;
 
-    // Use local file
+    // Use local file, start at 22s
     audio.src='lizzo_45s.mp3';
     audio.volume=0.5;
+    audio.currentTime=22;
 
     async function playMusic(){
         try{
+            if(audio.currentTime < 22) audio.currentTime=22;
             await audio.play();
             btn.textContent='⏸ Pause';
             note.textContent='Playing Good as Hell';
@@ -422,13 +424,26 @@ async function setupLizzoAudio(){
     audio.addEventListener('ended', function(){
         btn.textContent='▶ Play Good as Hell';
         note.textContent='Finished';
-        audio.currentTime=0;
+        audio.currentTime=22;
     });
 
-    // Try on load
-    playMusic();
-    
-    // Retry on first interaction
+    // Play when lizzo section scrolls into view
+    var hasPlayed=false;
+    var lizzoSection=document.querySelector('.lizzo-section');
+    if(lizzoSection && 'IntersectionObserver' in window){
+        var observer=new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting && !hasPlayed){
+                    hasPlayed=true;
+                    playMusic();
+                    observer.disconnect();
+                }
+            });
+        },{threshold:0.4});
+        observer.observe(lizzoSection);
+    }
+
+    // Fallback: retry on first interaction if still paused
     function unlock(){
         if(audio.paused) playMusic();
     }

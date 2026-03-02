@@ -181,9 +181,7 @@
     <div style="font-size:0.8rem; color:#4A4A4A; font-weight:600; letter-spacing:3px; text-transform:uppercase; margin-top:4px;">Personal Lubricant</div>
     <div style="font-size:0.75rem; color:#999; margin-top:6px; font-style:italic;">British insult. Universal feeling.</div>
     <p class="hook">Does petty revenge<br>and ROI turn you on?</p>
-    <div style="margin-top:24px;">
-        <h3 style="display:inline-block; border:2px solid #E8725C; padding:10px 24px; border-radius:8px; color:#E8725C; font-size:0.9rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:700;">Investor Brief · Confidential</h3>
-    </div>
+
 </section>
 
 <!-- PRODUCT MOCKUP -->
@@ -212,27 +210,21 @@
     </div>
 </section>
 
-<!-- MATERIALS ACCESS -->
-<section style="padding:1.5rem; text-align:center;">
-    <div style="max-width:440px; margin:0 auto; display:grid; gap:10px;">
-        <a class="download-btn" href="wanker-pitch-deck.pdf" download>Download Pitch Deck</a>
-        <a class="download-btn" href="wanker-business-plan.pdf" download>📄 Download Business Plan</a>
-        <a class="download-btn" href="wanker-safe.pdf" download>Download SAFE (YC Post‑Money)</a>
-    </div>
-</section>
 
 <!-- INNER VOICE -->
 <section class="voice-section">
     <p>You already know the feeling.</p>
-    <p>That moment you realize<br>you're <span class="accent">better off without them.</span></p>
-    <p>This is the thing you put on your shelf<br>to remind yourself <span class="accent">you made the right call.</span></p>
+    <p>If you broke up,<br>there was a <span class="accent">good reason.</span></p>
+    <p>This is the <span class="accent">physical reminder</span><br>you keep on your shelf so you never forget it.</p>
     <p class="small">Sometimes winning the game is folding. 🃏</p>
 </section>
 
 <!-- LIZZO -->
 <section class="lizzo-section">
     <p style="font-size:0.95rem; color:#555; font-style:normal; margin-bottom:20px; line-height:1.7;">
-        Lizzo released "Good as Hell," a song about walking away from someone who doesn't deserve you.<br>It became a global empowerment anthem: <span class="lit" style="font-size:0.95rem;">5x Platinum, #1 on Billboard, over 1 billion streams.</span> Proof that breakup energy isn't just relatable.<br>It's commercially massive.
+        Lizzo released "Good as Hell," a song about walking away from someone who doesn't deserve you.<br>It became a global empowerment anthem: <span class="lit" style="font-size:0.95rem;">5x Platinum, #1 on Billboard, over 1 billion streams.</span><br>
+        Vogue's 2026 angle is the same cultural shift: being a genuinely good friend is now a status symbol.<br>
+        This brand sits right in that lane — healing, humor, and high taste.
     </p>
 
     <!-- Player visual -->
@@ -258,7 +250,7 @@
     <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px; align-items:center;">
         <button id="lizzoPlayBtn" style="display:inline-block; background:#fff; color:#E8725C; font-size:0.85rem; font-weight:700; padding:10px 20px; border-radius:999px; border:2px solid #E8725C; cursor:pointer;">▶ Play Good as Hell</button>
         <p id="lizzoNote" style="font-size:0.75rem; color:#999; margin:0;">Auto-play tries on page open. If blocked, tap play.</p>
-        <audio id="lizzoAudio" preload="none"></audio>
+        <audio id="lizzoAudio" preload="auto"></audio>
     </div>
 
 
@@ -317,8 +309,8 @@
 <!-- FOUNDER -->
 <section class="founder-section">
     <h2>Meet the Founder</h2>
-    <p>Danaya is building WANKER on the idea that the feeling of taking your power back is worth a lot to people.</p>
-    <p>Not a sex product.<br>Comic relief in a cheeky form, just shocking enough to interrupt doom scrolling.</p>
+    <p>Danaya built WANKER to prove one thing: any situation in life can become an opportunity if you find the right angle.</p>
+    <p>Breakup pain turned into a premium product that helps people laugh, reset, and move forward with their standards intact.</p>
     <a class="ig-link" href="https://instagram.com/danaya.papaya" target="_blank">📸 @danaya.papaya</a>
 </section>
 
@@ -350,7 +342,8 @@
     <div class="modal">
         <button class="modal-close" onclick="closeModal()">×</button>
         <h2>Express Investor Interest</h2>
-        <p class="form-sub">Get the business plan and investment details.</p>
+        <h3 style="display:inline-block; border:2px solid #E8725C; padding:8px 18px; border-radius:8px; color:#E8725C; font-size:0.78rem; letter-spacing:1.3px; text-transform:uppercase; font-weight:700; margin:4px 0 10px;">Investor Brief · Confidential</h3>
+        <p class="form-sub">Get the pitch deck, business plan, and SAFE details after submitting.</p>
         <div class="danaya-note">
             <div class="danaya-note-title">Message from Danaya</div>
             <p>
@@ -377,6 +370,7 @@
             <div class="check">✅</div>
             <h3>You're in!</h3>
             <p>Thanks for your interest. You can download the investor materials now.</p>
+            <p style="font-size:0.72rem; color:#888; text-transform:uppercase; letter-spacing:1px; margin:8px 0 2px;">Investor Brief · Confidential</p>
             <div class="download-actions">
                 <a class="download-btn" href="wanker-pitch-deck.pdf" download>Download Pitch Deck</a>
                 <a class="download-btn" href="wanker-business-plan.pdf" download>Download Business Plan</a>
@@ -404,24 +398,38 @@ async function setupLizzoAudio(){
     var audio=document.getElementById('lizzoAudio');
     var btn=document.getElementById('lizzoPlayBtn');
     var note=document.getElementById('lizzoNote');
+    var lizzoSection=document.querySelector('.lizzo-section');
     if(!audio||!btn) return;
 
-    // Use local file, start at 22s
     audio.src='lizzo_45s.mp3';
-    audio.volume=0.5;
-    audio.currentTime=22;
+    audio.volume=0.55;
+
+    var hasPlayed=false;
+    var userEvents=['click','touchstart','keydown','scroll'];
+
+    function detachUserTriggers(){
+        userEvents.forEach(function(evt){ window.removeEventListener(evt, userGesturePlay, {passive:true}); });
+    }
 
     async function playMusic(){
         try{
-            if(audio.currentTime < 22) audio.currentTime=22;
+            if(audio.currentTime < 22 || audio.currentTime > 67) audio.currentTime=22;
             await audio.play();
+            hasPlayed=true;
             btn.textContent='⏸ Pause';
             note.textContent='Playing Good as Hell';
+            detachUserTriggers();
         }catch(err){
-            console.log('Autoplay blocked');
             note.textContent='Tap to play music';
         }
     }
+
+    function userGesturePlay(){
+        if(!hasPlayed && audio.paused){ playMusic(); }
+    }
+
+    // Fallback: any user gesture should start playback if not already playing
+    userEvents.forEach(function(evt){ window.addEventListener(evt, userGesturePlay, {passive:true}); });
 
     btn.addEventListener('click', function(){
         if(audio.paused){
@@ -437,25 +445,28 @@ async function setupLizzoAudio(){
         btn.textContent='▶ Play Good as Hell';
         note.textContent='Finished';
         audio.currentTime=22;
+        hasPlayed=false;
     });
 
-    // Play when lizzo section scrolls into view
-    var hasPlayed=false;
-    var lizzoSection=document.querySelector('.lizzo-section');
+    // Main trigger: play when lizzo section enters viewport
     if(lizzoSection && 'IntersectionObserver' in window){
         var observer=new IntersectionObserver(function(entries){
             entries.forEach(function(entry){
                 if(entry.isIntersecting && !hasPlayed){
-                    hasPlayed=true;
                     playMusic();
-                    observer.disconnect();
                 }
             });
-        },{threshold:0.4});
+        },{threshold:0.35});
         observer.observe(lizzoSection);
     }
 
-    // Music only plays when lizzo section is scrolled into view (no fallback trigger)
+    // If section is already visible on load, try immediately
+    if(lizzoSection){
+        var rect=lizzoSection.getBoundingClientRect();
+        if(rect.top < window.innerHeight*0.8 && rect.bottom > window.innerHeight*0.2){
+            playMusic();
+        }
+    }
 }
 
 setupLizzoAudio();

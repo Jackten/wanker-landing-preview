@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WANKER — A Trophy For Moving On</title>
+    <title>WANKER - A Trophy For Moving On</title>
     <!-- Plausible Analytics - privacy-friendly, no cookies, GDPR compliant -->
     <script defer data-domain="shopwanker.com" src="https://plausible.io/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
         .logo { width: 56px; margin-bottom: 10px; }
         .brand { font-size: 2.5rem; font-weight: 800; letter-spacing: 6px; }
         .hook { font-size: 1rem; color: var(--gray); margin-top: 16px; font-style: normal; max-width: 320px; }
-        
+
 
         /* PRODUCT */
         .product-section { padding: 2rem 1.5rem; text-align: center; }
@@ -204,16 +204,16 @@
         <div class="dict-def">A stupid or contemptible person.<br>Used to describe someone who has thoroughly wasted your time, energy, and emotional bandwidth.</div>
         <div class="dict-origin">Origin: British English. Now universal. Because every language needed a word for that person.</div>
     </div>
-    
+
     <div style="max-width: 440px; margin: 1.5rem auto 0 auto; color: #6b7280; font-size: 0.95rem; line-height: 1.6; text-align: center; padding: 0 10px;">
-        In the US, it's an <strong style="color:#555">insider signal</strong>—our first wave of buyers are the ones who already get it: studied abroad, fluent in British banter, deep in cheeky internet culture. They don't need it explained.
+        In the US, it's an <strong style="color:#555">insider signal</strong>-our first wave of buyers are the ones who already get it: studied abroad, fluent in British banter, deep in cheeky internet culture. They don't need it explained.
     </div>
 </section>
 
 
 <!-- INNER VOICE -->
 <section class="voice-section">
-    <p>For your friend — or yourself — who needs a reminder.</p>
+    <p>For your friend - or yourself - who needs a reminder.</p>
     <p>If you broke up,<br>there was a <span class="accent">good reason.</span></p>
     <p>This is the <span class="accent">physical reminder</span><br>you keep on your shelf so you never forget it.</p>
     <p class="small">Sometimes winning the game is folding. 🃏</p>
@@ -224,7 +224,7 @@
     <p style="font-size:0.95rem; color:#555; font-style:normal; margin-bottom:20px; line-height:1.7;">
         Lizzo released "Good as Hell," a song about walking away from someone who doesn't deserve you.<br>It became a global empowerment anthem: <span class="lit" style="font-size:0.95rem;">5x Platinum, #1 on Billboard, over 1 billion streams.</span><br>
         Vogue's 2026 angle is the same cultural shift: being a genuinely good friend is now a status symbol.<br>
-        This brand sits right in that lane — healing, humor, and high taste.
+        This brand sits right in that lane - healing, humor, and high taste.
     </p>
 
     <!-- Player visual -->
@@ -347,9 +347,9 @@
         <div class="danaya-note">
             <div class="danaya-note-title">Message from Danaya</div>
             <p>
-                Signal confidence to close what’s needed. But I’m being intentional. I don’t want a crowd of small voices. I’d rather keep it tight and strategic.<br><br>
-                So I’m collecting expressions of interest first to see who wants in and at what level, then structuring it properly. No pressure to commit.<br><br>
-                There’s a tech-focused angel overseeing the project for further confidence.
+                Hello! I'm flattered I picked your interest!<br><br>
+                This is not formal — I'm seeing who's interested and at what level. I'd rather have a few people who actually get it than a crowd of small checks and mixed energy. If it feels right on both sides, we figure out the details.<br><br>
+                There's also a tech angel on the project already, so you'd be in good company.
             </p>
         </div>
         <form id="modalForm" onsubmit="handleSubmit(event)">
@@ -374,7 +374,7 @@
             <div class="download-actions">
                 <a class="download-btn" href="wanker-pitch-deck.pdf" download>Download Pitch Deck</a>
                 <a class="download-btn" href="wanker-business-plan.pdf" download>Download Business Plan</a>
-                <a class="download-btn" href="wanker-safe.pdf" download>Download SAFE (YC Post‑Money)</a>
+                <a class="download-btn" href="wanker-safe.pdf" download>Download SAFE (YC Post-Money)</a>
             </div>
         </div>
     </div>
@@ -390,7 +390,7 @@
 <script>
 function openModal(){document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow=''}
-async function handleSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));try{var r=await fetch('https://formsubmit.co/ajax/wankerllc@outlook.com',{method:'POST',headers:{'Accept':'application/json'},body:d});if(r.ok){f.style.display='none';document.getElementById('successMsg').style.display='block';}else{var err=await r.json();alert('Something went wrong: '+(err&&err.errors?err.errors.map(function(x){return x.message}).join(', '):'please try again.'));}}catch(ex){alert('Network error — please try again.');}}
+async function handleSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));try{var r=await fetch('https://formsubmit.co/ajax/wankerllc@outlook.com',{method:'POST',headers:{'Accept':'application/json'},body:d});if(r.ok){f.style.display='none';document.getElementById('successMsg').style.display='block';}else{var err=await r.json();alert('Something went wrong: '+(err&&err.errors?err.errors.map(function(x){return x.message}).join(', '):'please try again.'));}}catch(ex){alert('Network error - please try again.');}}
 setTimeout(function(){document.getElementById('vulnOverlay').classList.add('active')},4000);
 function closeVuln(){document.getElementById('vulnOverlay').classList.remove('active')}
 

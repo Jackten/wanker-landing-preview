@@ -395,7 +395,7 @@
 function openModal(){document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow=''}
 async function handleSubmit(e){e.preventDefault();var f=e.target,d=new FormData(f),entry=Object.fromEntries(d.entries());entry.timestamp=new Date().toISOString();var leads=JSON.parse(localStorage.getItem('wanker_leads')||'[]');leads.push(entry);localStorage.setItem('wanker_leads',JSON.stringify(leads));try{var r=await fetch('https://formsubmit.co/ajax/wankerllc@outlook.com',{method:'POST',headers:{'Accept':'application/json'},body:d});if(r.ok){f.style.display='none';document.getElementById('successMsg').style.display='block';}else{var err=await r.json();alert('Something went wrong: '+(err&&err.errors?err.errors.map(function(x){return x.message}).join(', '):'please try again.'));}}catch(ex){alert('Network error - please try again.');}}
-setTimeout(function(){document.getElementById('vulnOverlay').classList.add('active')},4000);
+function openVuln(){document.getElementById('vulnOverlay').classList.add('active')}
 function closeVuln(){document.getElementById('vulnOverlay').classList.remove('active')}
 
 async function setupLizzoAudio(){
@@ -406,20 +406,38 @@ async function setupLizzoAudio(){
     if(!audio||!btn) return;
 
     audio.src='lizzo_45s.mp3';
-    audio.volume=0.55;
+    audio.volume=0;
 
     var hasPlayed=false;
+    var autoPlayReady=false;
+    var pendingAutoPlay=false;
     var userEvents=['click','touchstart','keydown','scroll'];
+    var targetVolume=0.55;
+    var fadeDurationMs=8000;
+    var fadeTimer=null;
 
     function detachUserTriggers(){
         userEvents.forEach(function(evt){ window.removeEventListener(evt, userGesturePlay, {passive:true}); });
+    }
+
+    function fadeInAudio(){
+        if(fadeTimer) clearInterval(fadeTimer);
+        var startedAt=Date.now();
+        audio.volume=0;
+        fadeTimer=setInterval(function(){
+            var progress=Math.min((Date.now()-startedAt)/fadeDurationMs,1);
+            audio.volume=targetVolume*progress;
+            if(progress>=1){ clearInterval(fadeTimer); fadeTimer=null; }
+        },120);
     }
 
     async function playMusic(){
         try{
             if(audio.currentTime < 22 || audio.currentTime > 67) audio.currentTime=22;
             await audio.play();
+            fadeInAudio();
             hasPlayed=true;
+            pendingAutoPlay=false;
             btn.textContent='⏸ Pause';
             note.textContent='Playing Good as Hell';
             detachUserTriggers();
@@ -428,18 +446,33 @@ async function setupLizzoAudio(){
         }
     }
 
-    function userGesturePlay(){
-        if(!hasPlayed && audio.paused){ playMusic(); }
+    function requestAutoPlay(){
+        pendingAutoPlay=true;
+        if(autoPlayReady && !hasPlayed && audio.paused){ playMusic(); }
     }
 
-    // Fallback: any user gesture should start playback if not already playing
+    function userGesturePlay(){
+        if(autoPlayReady && pendingAutoPlay && !hasPlayed && audio.paused){ playMusic(); }
+    }
+
+    // Delay automatic music by 40 seconds, then use the next eligible trigger.
+    note.textContent='Music starts after a short delay. Tap play anytime.';
+    setTimeout(function(){
+        autoPlayReady=true;
+        note.textContent='Tap play if music does not start automatically';
+        if(pendingAutoPlay && !hasPlayed && audio.paused){ playMusic(); }
+    },40000);
+
+    // Fallback: after the delay, any user gesture can start playback if autoplay was blocked.
     userEvents.forEach(function(evt){ window.addEventListener(evt, userGesturePlay, {passive:true}); });
 
     btn.addEventListener('click', function(){
         if(audio.paused){
             playMusic();
         }else{
+            if(fadeTimer) clearInterval(fadeTimer);
             audio.pause();
+            audio.volume=0;
             btn.textContent='▶ Play Good as Hell';
             note.textContent='Paused';
         }
@@ -457,7 +490,7 @@ async function setupLizzoAudio(){
         var observer=new IntersectionObserver(function(entries){
             entries.forEach(function(entry){
                 if(entry.isIntersecting && !hasPlayed){
-                    playMusic();
+                    requestAutoPlay();
                 }
             });
         },{threshold:0.35});
@@ -468,7 +501,7 @@ async function setupLizzoAudio(){
     if(lizzoSection){
         var rect=lizzoSection.getBoundingClientRect();
         if(rect.top < window.innerHeight*0.8 && rect.bottom > window.innerHeight*0.2){
-            playMusic();
+            requestAutoPlay();
         }
     }
 }

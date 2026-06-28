@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLACK HORSE - Store Mockup v1</title>
+  <title>BLACK HORSE - Store Mockup v2</title>
   <meta name="description" content="BLACK HORSE store mockup: handmade black leather corsets, harness belts, bags, and custom atelier pieces from Kazakhstan.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -230,30 +230,49 @@
     .categories {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      gap: clamp(22px, 3vw, 34px) clamp(18px, 3vw, 30px);
       max-width: 1180px;
       margin: 0 auto;
     }
 
     .category {
-      min-height: 210px;
-      padding: 24px;
-      border: 1px solid rgba(16, 14, 13, .16);
-      background: var(--paper);
+      display: block;
     }
 
-    .category span {
-      color: var(--red);
-      font-size: .75rem;
-      font-weight: 800;
+    .category-media {
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #eee6dc;
+      border: 1px solid rgba(16, 14, 13, .08);
+    }
+
+    .category-media img {
+      filter: saturate(.84) contrast(1.08) brightness(1.01);
+      transition: transform .6s ease, filter .6s ease;
+    }
+
+    .category:hover .category-media img {
+      transform: scale(1.028);
+      filter: saturate(.9) contrast(1.12) brightness(1.02);
+    }
+
+    .category h3 {
+      margin-top: 18px;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(.88rem, 1.2vw, 1.05rem);
+      font-weight: 500;
+      letter-spacing: .16em;
+      line-height: 1.28;
       text-transform: uppercase;
     }
 
-    .category h3 { margin-top: 54px; font-size: 1.8rem; }
     .category p {
-      margin: 10px 0 0;
-      color: rgba(16, 14, 13, .62);
-      font-size: .9rem;
+      margin: 6px 0 0;
+      color: rgba(16, 14, 13, .48);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     .products {
@@ -458,7 +477,8 @@
       .hero-copy { padding-top: 46px; }
       h1 { font-size: 3.9rem; }
       .hero-actions .button { width: 100%; }
-      .categories, .products, .rollout, .mood-grid, .atelier-grid, .assortment { grid-template-columns: 1fr; }
+      .products, .rollout, .mood-grid, .atelier-grid, .assortment { grid-template-columns: 1fr; }
+      .categories { grid-template-columns: 1fr 1fr; gap: 22px 14px; }
       .mood-shot { min-height: 420px; }
       .footer { grid-template-columns: 1fr; }
     }
@@ -480,7 +500,7 @@
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">Store mockup v1 / black-first leather atelier</span>
+      <span class="eyebrow">Store mockup v2 / black-first leather atelier</span>
         <h1>Armor of femininity and power.</h1>
         <p class="hero-line">Handmade from genuine leather: corsets, harness belts, bags, and custom pieces from BLACK HORSE. Default look: black, sculptural, intimate, and strong.</p>
         <div class="hero-actions">
@@ -517,39 +537,51 @@
     <section id="collections">
       <div class="section-head">
         <h2>Launch categories</h2>
-        <p>Cleaner Shopify structure: not six products, but a full assortment grouped so the shopper can understand the BLACK HORSE world quickly.</p>
+        <p>Clean visual navigation first. Full names, fit notes, colors, and variants sit deeper in the shop structure below.</p>
       </div>
       <div class="categories">
-        <article class="category">
-          <span>01</span>
+        <a class="category" href="#assortment">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-corsets.jpg" alt="Corsets and basques category">
+          </div>
           <h3>Corsets & Basques</h3>
-          <p>For women who enter with presence. Olive, Furia, Wonder, Steppe Jewel, Passion, Angel, and couture waist pieces.</p>
-        </article>
-        <article class="category">
-          <span>02</span>
+          <p>Olive / Furia / Wonder / Passion</p>
+        </a>
+        <a class="category" href="#assortment">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-harness.jpg" alt="Harness belts category">
+          </div>
           <h3>Harness Belts</h3>
-          <p>Classic, FRIDAY, LARA, and leather structure for outfits customers already own.</p>
-        </article>
-        <article class="category">
-          <span>03</span>
+          <p>FRIDAY / LARA / Classic</p>
+        </a>
+        <a class="category" href="#assortment">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-belts.jpg" alt="Waist belts category">
+          </div>
           <h3>Waist Belts</h3>
-          <p>Damposh, Valentia, MIA, LINA, and Tassel Obi belts: easier entry pieces with the BLACK HORSE silhouette.</p>
-        </article>
-        <article class="category">
-          <span>04</span>
+          <p>Damposh / Valentia / MIA / LINA</p>
+        </a>
+        <a class="category" href="#assortment">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-bags.jpg" alt="Bags category">
+          </div>
           <h3>Bags</h3>
-          <p>MY LOVE, ZANA, tassel bags, and compact leather carry pieces. Functional, black-first, built for presence.</p>
-        </article>
-        <article class="category">
-          <span>05</span>
-          <h3>Fringe & Skirts</h3>
-          <p>Leather fringe skirt belts in custom lengths for movement, stage, festival, runway, and denim styling.</p>
-        </article>
-        <article class="category">
-          <span>06</span>
+          <p>MY LOVE / ZANA / EVA / Tassel</p>
+        </a>
+        <a class="category" href="#assortment">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-pocket.jpg" alt="Pocket utility category">
+          </div>
+          <h3>Pocket Utility</h3>
+          <p>Modular / Double pocket / Hands-free</p>
+        </a>
+        <a class="category" href="#atelier">
+          <div class="category-media">
+            <img src="assets/v2-categories/category-atelier.jpg" alt="Custom atelier category">
+          </div>
           <h3>Custom Atelier</h3>
-          <p>Festival couture, editorial looks, heritage details, and one-off made-to-measure leather pieces.</p>
-        </article>
+          <p>Festival / Heritage / Made to measure</p>
+        </a>
       </div>
     </section>
 
@@ -780,7 +812,7 @@
   <footer class="footer">
     <div>
       <div class="mark">BLACK HORSE</div>
-      <p>Store mockup v1. Black-first, mood-first, product options deeper.</p>
+      <p>Store mockup v2. Clean category tiles, black-first mood, product options deeper.</p>
     </div>
     <a class="button" href="#products">Review Product Cards</a>
   </footer>

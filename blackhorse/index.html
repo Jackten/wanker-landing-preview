@@ -229,20 +229,19 @@
 
     .categories {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
       max-width: 1180px;
       margin: 0 auto;
-      border: 1px solid rgba(16, 14, 13, .16);
-      background: var(--paper);
     }
 
     .category {
       min-height: 210px;
       padding: 24px;
-      border-right: 1px solid rgba(16, 14, 13, .16);
+      border: 1px solid rgba(16, 14, 13, .16);
+      background: var(--paper);
     }
 
-    .category:last-child { border-right: 0; }
     .category span {
       color: var(--red);
       font-size: .75rem;
@@ -315,6 +314,49 @@
       font-size: .68rem;
       font-weight: 800;
       text-transform: uppercase;
+    }
+
+    .assortment {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .assortment-card {
+      min-height: 300px;
+      padding: 20px;
+      background: var(--paper);
+      border: 1px solid rgba(16, 14, 13, .15);
+    }
+
+    .assortment-card .count {
+      color: var(--red);
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .assortment-card h3 {
+      margin-top: 18px;
+      font-size: 1.72rem;
+      line-height: 1.05;
+    }
+
+    .assortment-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      color: rgba(16, 14, 13, .68);
+      font-size: .9rem;
+    }
+
+    .assortment-card li::before {
+      content: "- ";
+      color: var(--red);
     }
 
     .atelier {
@@ -405,8 +447,7 @@
       .hero { grid-template-columns: 1fr; }
       .hero-image { min-height: 68vh; order: -1; }
       .hero-points { grid-template-columns: 1fr; }
-      .categories, .products, .rollout, .mood-grid { grid-template-columns: 1fr 1fr; }
-      .category:nth-child(2), .category:nth-child(4) { border-right: 0; }
+      .categories, .products, .rollout, .mood-grid, .assortment { grid-template-columns: 1fr 1fr; }
       .atelier { grid-template-columns: 1fr; }
       .section-head { display: block; }
       .section-head p { margin-top: 14px; }
@@ -417,9 +458,7 @@
       .hero-copy { padding-top: 46px; }
       h1 { font-size: 3.9rem; }
       .hero-actions .button { width: 100%; }
-      .categories, .products, .rollout, .mood-grid, .atelier-grid { grid-template-columns: 1fr; }
-      .category { border-right: 0; border-bottom: 1px solid rgba(16, 14, 13, .14); }
-      .category:last-child { border-bottom: 0; }
+      .categories, .products, .rollout, .mood-grid, .atelier-grid, .assortment { grid-template-columns: 1fr; }
       .mood-shot { min-height: 420px; }
       .footer { grid-template-columns: 1fr; }
     }
@@ -431,6 +470,7 @@
     <nav class="nav-links" aria-label="Store sections">
       <a href="#collections">Collections</a>
       <a href="#products">Launch Products</a>
+      <a href="#assortment">Full Map</a>
       <a href="#atelier">Atelier</a>
       <a href="#rollout">Rollout</a>
     </nav>
@@ -476,13 +516,13 @@
     <section id="collections">
       <div class="section-head">
         <h2>Launch categories</h2>
-        <p>Cleaner Shopify structure: dramatic corsetry, wearable harness belts, bags, and custom atelier pieces. No color palette on the homepage.</p>
+        <p>Cleaner Shopify structure: not six products, but a full assortment grouped so the shopper can understand the BLACK HORSE world quickly.</p>
       </div>
       <div class="categories">
         <article class="category">
           <span>01</span>
-          <h3>Corset Goddess</h3>
-          <p>For women who enter with presence. Corsets, basques, and waist sculptors, shown in black first and made to measure from XS to plus-size.</p>
+          <h3>Corsets & Basques</h3>
+          <p>For women who enter with presence. Olive, Furia, Wonder, Steppe Jewel, Passion, Angel, and couture waist pieces.</p>
         </article>
         <article class="category">
           <span>02</span>
@@ -491,11 +531,21 @@
         </article>
         <article class="category">
           <span>03</span>
-          <h3>Bags</h3>
-          <p>MY LOVE, ZANA, tassel bags, and pocket pieces. Functional, black-first, built for presence.</p>
+          <h3>Waist Belts</h3>
+          <p>Damposh, Valentia, MIA, LINA, and Tassel Obi belts: easier entry pieces with the BLACK HORSE silhouette.</p>
         </article>
         <article class="category">
           <span>04</span>
+          <h3>Bags</h3>
+          <p>MY LOVE, ZANA, tassel bags, and compact leather carry pieces. Functional, black-first, built for presence.</p>
+        </article>
+        <article class="category">
+          <span>05</span>
+          <h3>Fringe & Skirts</h3>
+          <p>Leather fringe skirt belts in custom lengths for movement, stage, festival, runway, and denim styling.</p>
+        </article>
+        <article class="category">
+          <span>06</span>
           <h3>Custom Atelier</h3>
           <p>Festival couture, editorial looks, heritage details, and one-off made-to-measure leather pieces.</p>
         </article>
@@ -505,7 +555,7 @@
     <section class="dark-band" id="products">
       <div class="section-head">
         <h2>Hero products</h2>
-        <p>Default merchandise view shows black. Color, reversible finishes, and custom leather choices sit deeper inside product pages.</p>
+        <p>Top visual edit for the landing page. The full assortment is mapped below; color, reversible finishes, and custom leather choices sit deeper inside product pages.</p>
       </div>
       <div class="products">
         <article class="product">
@@ -573,6 +623,113 @@
             <p>Product detail cards should show leather, stitching, buckles, straps, and ring hardware before showing color variety.</p>
             <div class="pill-row"><span class="pill">Detail proof</span><span class="pill">Shopify ready</span></div>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="assortment">
+      <div class="section-head">
+        <h2>Full launch map</h2>
+        <p>All items from the thread, organized for Shopify navigation. The homepage can lead with mood while the shop menu carries the full range.</p>
+      </div>
+      <div class="assortment">
+        <article class="assortment-card">
+          <span class="count">Corset Goddess</span>
+          <h3>Corsets & Basques</h3>
+          <ul>
+            <li>Olive Corset</li>
+            <li>Wonder / Amazon Armor Corset</li>
+            <li>Furia Leather Corset</li>
+            <li>Steppe Jewel Corset</li>
+            <li>Passion Leather Basque</li>
+            <li>Angel Corset Belt</li>
+            <li>Power Waist Basque</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Structure layer</span>
+          <h3>Harness Belts</h3>
+          <ul>
+            <li>FRIDAY Harness Belt</li>
+            <li>LARA Full Harness</li>
+            <li>Classic Harness Belt</li>
+            <li>Rider Harness Belt</li>
+            <li>Portepeya / starter harness lane</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Everyday armor</span>
+          <h3>Waist & Corset Belts</h3>
+          <ul>
+            <li>Damposh Corset Belt</li>
+            <li>Valentia Corset Belt</li>
+            <li>MIA Waist Belt</li>
+            <li>LINA Wide Belt</li>
+            <li>Tassel Obi Belt</li>
+            <li>Black, dark brown, and ivory variants inside product pages</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Bags</span>
+          <h3>Leather Bags</h3>
+          <ul>
+            <li>MY LOVE Transformer Phone Bag</li>
+            <li>ZANA Transformer Bag / Backpack</li>
+            <li>Blackhorse Tassel Bag</li>
+            <li>EVA Pocket Backpack</li>
+            <li>Compact crossbody and phone-size bag variants</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Movement</span>
+          <h3>Fringe & Skirts</h3>
+          <ul>
+            <li>Nomad Fringe Skirt</li>
+            <li>Runway Fringe Skirt Belt</li>
+            <li>Custom length: mini, midi, ankle, full drama</li>
+            <li>Styled over denim, dresses, bodysuits, and stage looks</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Hands-free</span>
+          <h3>Pocket Utility</h3>
+          <ul>
+            <li>Modular Pocket Belt</li>
+            <li>Double Pocket Basque Belt</li>
+            <li>Utility Pocket Belt</li>
+            <li>Detachable phone, cards, keys, and festival/travel use cases</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">One of one</span>
+          <h3>Custom Atelier</h3>
+          <ul>
+            <li>Steppe Couture</li>
+            <li>Nomad Armor</li>
+            <li>Festival / Burning Man custom moments</li>
+            <li>Heritage metalwork and oyu-inspired detail</li>
+            <li>Sketch to finished artifact process</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Fit system</span>
+          <h3>Made to Measure</h3>
+          <ul>
+            <li>XS to plus-size</li>
+            <li>Custom waist, bust, hip, torso, and strap measurements</li>
+            <li>Adjustable closures where possible</li>
+            <li>Reversible and custom color options in deeper product layers</li>
+          </ul>
+        </article>
+        <article class="assortment-card">
+          <span class="count">Material rule</span>
+          <h3>Genuine Leather</h3>
+          <ul>
+            <li>Black shown by default</li>
+            <li>Color choices hidden on product pages</li>
+            <li>Use material/detail photos as proof, not homepage clutter</li>
+            <li>Handmade construction, stitching, buckles, rings, and lacing visible</li>
+          </ul>
         </article>
       </div>
     </section>
